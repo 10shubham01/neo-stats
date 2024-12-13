@@ -6,8 +6,8 @@ const compat = new FlatCompat(antfu);
 export default antfu(
   {
     stylistic: {
-      indent: 2, // 4, or 'tab'
-      quotes: 'single', // or 'double'
+      indent: 2,
+      quotes: 'single',
       semi: true,
       overrides: {
         'style/member-delimiter-style': [
@@ -57,7 +57,6 @@ export default antfu(
     },
   }),
   {
-    // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
     files: ['**/*.vue'],
     rules: {
       'vue/operator-linebreak': ['error', 'before'],

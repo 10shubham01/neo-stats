@@ -10,7 +10,6 @@ export function useAxios(config?: AxiosRequestConfig) {
   ): Promise<T> {
     try {
       const { data } = await axios.instance.get<T>(url, config);
-
       return data;
     }
     catch (error) {

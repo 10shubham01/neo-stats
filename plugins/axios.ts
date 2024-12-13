@@ -11,24 +11,20 @@ export default defineNuxtPlugin(() => {
   const {
     public: { axios: axiosPublicConfig },
   } = useRuntimeConfig();
-  const defaultAxiosConfig: CreateAxiosDefaults = axiosPublicConfig as CreateAxiosDefaults;
 
-  console.log(defaultAxiosConfig);
+  const defaultAxiosConfig: CreateAxiosDefaults = axiosPublicConfig as CreateAxiosDefaults;
 
   const axiosInstance: AxiosInstance = axios.create(defaultAxiosConfig);
 
-  // Request interceptor to add Authorization header if not present
   axiosInstance.interceptors.request.use((request: InternalAxiosRequestConfig) => {
-    if (!request.headers.Authorization) {
-      request.headers.Authorization = `Bearer ${''}`;
-    }
+    const url = new URL(request.url ?? '', 'http://base.url');
+    url.searchParams.append('api_key', axiosPublicConfig.api_key);
+    request.url = url.pathname + url.search;
     return request;
   });
 
-  // Response interceptor (currently a pass-through)
   axiosInstance.interceptors.response.use((response: AxiosResponse) => response);
 
-  // Provide the axios instance and custom methods globally
   return {
     provide: {
       axios: {
