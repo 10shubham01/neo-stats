@@ -52,8 +52,9 @@ This project is designed with scalability and future growth in mind:
 ```
 project-root/
 ├── components/
-│   ├── DatePicker.vue
-│   ├── ChartsBarChart.vue
+│   ├── Charts
+│       ├── BarChart.vue
+│       ├── LineChart.vue
 │   └── Toast.vue
 ├── composables/
 │   ├── axios.ts
