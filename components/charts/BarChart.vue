@@ -26,10 +26,10 @@ onMounted(() => {
           {
             label: props.title,
             data: props.data,
-            backgroundColor: 'red',
-            borderColor: 'red',
+            backgroundColor: 'rgb(29 78 216)',
+            borderColor: 'rgb(29 78 216)',
             borderWidth: 1,
-            hoverBackgroundColor: 'red',
+            hoverBackgroundColor: 'rgb(29 78 216)',
 
           },
         ],
