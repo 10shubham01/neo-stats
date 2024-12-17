@@ -1,6 +1,5 @@
-import type {
-  AxiosRequestConfig,
-} from 'axios';
+import type { AxiosRequestConfig } from 'axios';
+import { isAxiosError } from 'axios';
 
 export function useAxios(config?: AxiosRequestConfig) {
   const axios = useNuxtApp().$axios;
@@ -13,7 +12,12 @@ export function useAxios(config?: AxiosRequestConfig) {
       return data;
     }
     catch (error) {
-      return Promise.reject(error);
+      if (isAxiosError(error)) {
+        return Promise.reject(error.response?.data);
+      }
+      else {
+        return Promise.reject(error);
+      }
     }
   }
 
@@ -26,7 +30,12 @@ export function useAxios(config?: AxiosRequestConfig) {
       return responseData;
     }
     catch (error) {
-      return Promise.reject(error);
+      if (isAxiosError(error)) {
+        return Promise.reject(error.response?.data);
+      }
+      else {
+        return Promise.reject(error);
+      }
     }
   }
   return { ...axios, $post, $get };
