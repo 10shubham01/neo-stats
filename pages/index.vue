@@ -75,11 +75,11 @@ const dateValue = ref({
 async function fetchAsteroids() {
   loading.value = true;
   try {
-    const response = await $get<AsteroidData>(`/rest/v1/feed?START_DATE=${dateValue.value.startDate}&END_DATE=${dateValue.value.endDate}`);
+    const response = await $get<AsteroidData>(`/rest/v1/feed?start_date=${dateValue.value.startDate}&end_date=${dateValue.value.endDate}`);
     data.value = response;
   }
   catch (err: any) {
-    raiseToast(error.value = err.message || 'Failed to load asteroid data', 'ERROR');
+    raiseToast(error.value = err.error_message || 'Failed to load asteroid data', 'ERROR');
   }
   finally {
     loading.value = false;
